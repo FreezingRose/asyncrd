@@ -5,7 +5,7 @@ class Result():
         self.result : str = result
             
     def __repr__(self):
-        return self
+        return self.result
     
     def __str__(self):
         return self.result
@@ -25,10 +25,12 @@ class Query():
         self.writer = connection.writer
         
     async def do_query(self, protocol : typing.Union[Get, Set]):
-        data_ = protocol.query
+        data_ = protocol.query+"\r\n"
         self.writer.write(data_.encode())
         await self.writer.drain()
         data = await self.reader.read(100)
         res = Result(f'{data.decode()!r}')
-        return res.result
+        res = res.replace("\r", "")
+        res = res.replace("\n", "")
+        return res
     
