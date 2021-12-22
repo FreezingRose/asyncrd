@@ -2,13 +2,7 @@ import asyncio, typing
 
 class Result():
     def __init__(self, result : str):
-        self.result : str = result
-            
-    def __repr__(self):
-        return self.result
-    
-    def __str__(self):
-        return self.result
+        self.result : str = result          
     
 
 class Set():
@@ -30,6 +24,7 @@ class Query():
         await self.writer.drain()
         data = await self.reader.read(100)
         res = Result(f'{data.decode()!r}')
+        res = res.result
         res = res.replace("\r", "")
         res = res.replace("\n", "")
         return res
