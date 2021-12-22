@@ -11,7 +11,7 @@ class CatchException():
         self.text = text
         
     async def catch_error(self):
-        if self.text.starswith("-ERR"):
+        if self.text.startswith("-ERR"):
             text = self.text.split("-ERR ")
             raise RedisException(text[1])
             return
