@@ -1,6 +1,6 @@
 import asyncio, socket
 from urllib.parse import 
-from .query import Query
+from .query import Query, Get, Set
 
 class ConnectionProtocol():
     def __init__(self, connection_url : str):
@@ -9,5 +9,14 @@ class ConnectionProtocol():
         self.port = self.connection_url.port
         
     async def connect(self):
-        self.connection = await asyncio.open_connection(self.hostname, self.port)
-    
+        self.reader, self.writer = await asyncio.open_connection(self.hostname, self.port)
+        
+    async def get(self, query : str):
+        data = Query(self)
+        result = await data.do_query(Get(query))
+        return result
+
+    async def set(self, query : str):
+        data = Query(self)
+        result = await data.do_query(Set(query))
+        return result
