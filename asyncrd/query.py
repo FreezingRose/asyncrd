@@ -1,5 +1,5 @@
 import asyncio, typing
-from .exceptions import CatchError, RedisException
+from .exceptions import CatchException, RedisException
 
 class Result():
     def __init__(self, result : str):
@@ -28,5 +28,7 @@ class Query():
         res = res.result
         res = res.replace("\r", "")
         res = res.replace("\n", "")
+        catching = CatchException(text=text)
+        await catching.catch_error()
         return res
     
