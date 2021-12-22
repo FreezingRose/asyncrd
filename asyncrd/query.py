@@ -3,6 +3,13 @@ import asyncio, typing
 class Result():
     def __init__(self, result : str):
         self.result : str = result
+            
+    def __repr__(self):
+        return self
+    
+    def __str__(self):str
+        return self.result
+    
 
 class Set():
     def __init__(self, query : str):
@@ -18,9 +25,10 @@ class Query():
         self.writer = connection.writer
         
     async def do_query(self, protocol : typing.Union[Get, Set]):
-        data_ = protocol.query+"\r\n"
+        data_ = protocol.query
         self.writer.write(data_.encode())
         await self.writer.drain()
         data = await self.reader.read(100)
-        return Result(f'{data.decode()!r}')
+        res = Result(f'{data.decode()!r}')
+        return res.result
     
