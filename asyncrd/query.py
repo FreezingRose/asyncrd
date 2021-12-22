@@ -1,4 +1,5 @@
 import asyncio, typing
+from .exceptions import CatchError, RedisException
 
 class Result():
     def __init__(self, result : str):
