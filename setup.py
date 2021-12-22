@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="asyncrd",
-    version="1.0.0",
+    version="2.0.0",
     author="Alex Hutz",
     author_email="frostiitheweeb@outlook.com",
     description="A small project and a wrapper for Redis.",
