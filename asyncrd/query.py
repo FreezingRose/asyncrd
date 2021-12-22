@@ -17,7 +17,7 @@ class Query():
         self.reader = connection.reader
         self.writer = connection.writer
         
-    async def do_query(protocol : typing.Union[Get, Set]):
+    async def do_query(self, protocol : typing.Union[Get, Set]):
         self.writer.write(protocol.query.encode())
         await self.writer.drain()
         data = await self.reader.read(100)
