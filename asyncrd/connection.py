@@ -1,5 +1,5 @@
 import asyncio, socket
-from urllib.parse import 
+from urllib.parse import urlparse
 from .query import Query, Get, Set
 
 class ConnectionProtocol():
