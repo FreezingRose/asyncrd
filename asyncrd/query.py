@@ -1,13 +1,16 @@
 import asyncio, typing
 
 class Result():
-    result : str
+    def __init__(self, result : str):
+        self.result : str = result
 
 class Set():
-    query : str
-
+    def __init__(self, query : str):
+        self.query : str = query
+            
 class Get():
-    query : str
+    def __init__(self, query : str):
+        self.query : str = query
 
 class Query():
     def __init__(self, connection):
