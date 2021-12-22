@@ -23,7 +23,7 @@ class Query():
         self.writer.write(data_.encode())
         await self.writer.drain()
         data = await self.reader.read(100)
-        res = Result(data.decode())
+        res = Result(data.decode('utf-8'))
         res = res.result
         res = res.replace("\r", "")
         res = res.replace("\n", "")
