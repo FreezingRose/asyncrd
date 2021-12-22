@@ -28,7 +28,7 @@ class Query():
         res = res.result
         res = res.replace("\r", "")
         res = res.replace("\n", "")
-        catching = CatchException(text=text)
+        catching = CatchException(text=res)
         await catching.catch_error()
         return res
     
