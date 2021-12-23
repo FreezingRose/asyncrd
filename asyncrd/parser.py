@@ -20,7 +20,7 @@ PROTOCOL = "\r\n"
 class Parser():
     async def encode(self, command, query):
         res = f"*2{PROTOCOL}$4{PROTOCOL}{command}{PROTOCOL}$6{PROTOCOL}{query}{PROTOCOL}"
-        return res.encode()
+        return res
     
     async def decode(self, text):
         text = text.decode("utf-8")
@@ -51,7 +51,5 @@ class Parser():
             if text.startswith(results[3]):
                 res = results[3]
                 text = text.strip(res)
-            text[0] = ""
-            return text
         elif prot == -1:
             raise RedisException("{0} was not present in the result.".format(PROTOCOL))
