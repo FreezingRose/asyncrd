@@ -1,5 +1,19 @@
 import aioconsole
-from .exceptions import RedisException, RedisCommandUnknown, RedisWrongType
+
+class BaseRedisException(Exception):
+    pass
+
+class RedisException(BaseRedisException):
+    def __init__(self, message : str):
+        super().__init__(message)
+        
+class RedisCommandUnknown(BaseRedisException):
+    def __init__(self, message : str):
+        super().__init__(message)
+        
+class RedisWrongType(BaseRedisException):
+    def __init__(self, message : str):
+        super().__init__(message)
 
 PROTOCOL = "\r\n"
 
