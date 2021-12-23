@@ -22,4 +22,5 @@ setuptools.setup(
     ],
     packages=["asyncrd"],
     python_requires=">=3.7",
+    install_requires=["aioconsole"],
 )
