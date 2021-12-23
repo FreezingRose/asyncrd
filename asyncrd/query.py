@@ -33,5 +33,5 @@ class Query():
         return res
         
     async def do_query(self, protocol : typing.Union[Get, Set]):
-        return self._execute_command(protocol.query)
+        return await self._execute_command(protocol.query)
     
