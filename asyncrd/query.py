@@ -5,15 +5,15 @@ class Result():
     def __init__(self, result : str):
         self.result : str = result          
     
-class BasicProtocol():
+class BasicProtocol():    
     def __init__(self, query : str):
         self.query : str = query
 
 class Set(BasicProtocol):
-    pass
+    command = 'set'
             
 class Get(BasicProtocol):
-    pass
+    command = 'get'
 
 class Query():
     def __init__(self, connection):
@@ -33,6 +33,11 @@ class Query():
         await catching.catch_error()
         return res
         
-    async def do_query(self, protocol : BasicProtocol):
-        return await self._execute_command(protocol.query)
+    async def do_query(self, protocol : typing.Union[Get, Set, BasicProtocol]):
+        command = getattr(protocol, 'command', None)
+        
+        if not command:
+            raise Exception('protocol.command is not present')
+            
+        return await self._execute_command(command + ' ' + protocol.query)
     
