@@ -1,6 +1,7 @@
 import asyncio, typing
 import aioconsole
 from .parser import Parser
+from redis_protocol import decode, encode
 
 class RedisOK():
     def __init__(self, message : str):
@@ -28,7 +29,7 @@ class CatchException():
         
     async def catch_error(self):
         parser = Parser()
-        res = await parser.decode(self.text)
+        res = decode(self.text)
         return res
             
         
