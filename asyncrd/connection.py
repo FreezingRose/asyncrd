@@ -13,6 +13,7 @@ class ConnectionProtocol():
         self.reader, self.writer = await asyncio.open_connection(self.hostname, self.port)
         
     async def close(self):
+        await data.do_query(BasicProtocol(query="QUIT"))
         self.writer.close()
         await self.writer.wait_closed()
         
