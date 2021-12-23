@@ -40,6 +40,6 @@ class Query():
         if not command:
             raise RedisException('protocol.command is not present')
         res = await self._execute_command(command, protocol.query)
-        res[1] = ""
+        res[0] = ""
         return res
     
