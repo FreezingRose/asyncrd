@@ -40,5 +40,7 @@ class Query():
     async def do_query(self, protocol : typing.Union[Get, Set, BasicProtocol]):
         command = getattr(protocol, 'command', None)
         res = await self._execute_command(command, protocol.query)
+        if res.starswith("$"):
+            pass
         return res
     
