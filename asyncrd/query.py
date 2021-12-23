@@ -6,9 +6,8 @@ class Result():
         self.result : str = result          
     
 class BasicProtocol():    
-    def __init__(self, query : str = "", command : str = "QUIT"):
+    def __init__(self, query : str):
         self.query : str = query
-        self.command = command
 
 class Set(BasicProtocol):
     command = 'SET'
@@ -31,7 +30,7 @@ class Query():
         res = res.replace("\r", "")
         res = res.replace("\n", "")
         catching = CatchException(text=res)
-        catched = await catching.catch_error(command)
+        catched = await catching.catch_error()
         return catched
         
     async def do_query(self, protocol : typing.Union[Get, Set, BasicProtocol]):
@@ -39,7 +38,5 @@ class Query():
         
         if not command:
             raise RedisException('protocol.command is not present')
-        if command == "QUIT":
-            return await self._execute_command(command)
         return await self._execute_command(command + ' ' + protocol.query)
     
