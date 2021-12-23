@@ -23,7 +23,7 @@ class CatchException():
         self.text = text
         
     async def catch_error(self):
-        if self.text.startswith("-ERR") or self.text.starswith("-WRONGTYPE "):
+        if self.text.startswith("-ERR") or self.text.startswith("-WRONGTYPE "):
             text = self.text.split("-ERR ")
             if "unknown" in text[1]:
                 text_one = text[1]
@@ -38,10 +38,6 @@ class CatchException():
         if self.text.startswith("+OK"):
             res = RedisOK("OK")
             return res.msg
-        if self.text == "$-1":
-            return []
-        self.text = self.text.strip("$5")
-        self.text = self.text.strip("$6")
         return self.text
             
         
