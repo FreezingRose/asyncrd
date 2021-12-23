@@ -40,8 +40,11 @@ class CatchException():
             return res.msg
         self.text = self.text.strip("$5")
         self.text = self.text.strip("$6")
-        if int(self.text) == -1:
-            self.text = []
+        try:
+            if int(self.text) == -1:
+                self.text = []
+        except:
+            pass
         return self.text
             
         
