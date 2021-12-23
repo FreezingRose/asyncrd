@@ -19,7 +19,9 @@ PROTOCOL = "\r\n"
 
 class Parser():
     async def encode(self, command, query):
-        res = f"*2{PROTOCOL}$4{PROTOCOL}{command}{PROTOCOL}$6{PROTOCOL}{query}{PROTOCOL}".encode()
+        res = f"*2{PROTOCOL}$4{PROTOCOL}{command}{PROTOCOL}{query}{PROTOCOL}".encode()
+        if command == "GET":
+            res = f"*1{PROTOCOL}$4{PROTOCOL}{command}{PROTOCOL}{query}{PROTOCOL}".encode()
         return res
     
     async def decode(self, text):
