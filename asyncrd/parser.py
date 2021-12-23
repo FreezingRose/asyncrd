@@ -38,5 +38,6 @@ class Parser():
                 res = results[3]
                 text = text.strip(res)
                 return "NONE"
+            return text
         elif prot == -1:
             raise RedisException("{0} was not present in the result.".format(PROTOCOL))
