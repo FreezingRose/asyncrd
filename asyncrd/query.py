@@ -30,10 +30,9 @@ class Query():
         self.writer.write(data_)
         await self.writer.drain()
         data = await self.reader.read(100)
-        print(data)
-        res = decoder(data)
+        data = data.encode()
+        res = decoder(data_)
         res = res.decode("utf-8")
-        print(res)
         catching = CatchException(text=res)
         catched = await catching.catch_error()
         return catched
