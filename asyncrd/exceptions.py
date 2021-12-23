@@ -34,7 +34,7 @@ class CatchException():
         if res.startswith("$-1"):
             return "NONE"
         for i in rese:
-            if res.starswith(i):
+            if res.startswith(i):
                 res = res.split(i)
                 raise RedisException(res[1])
                 break
