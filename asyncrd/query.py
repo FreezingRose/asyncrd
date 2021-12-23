@@ -6,8 +6,9 @@ class Result():
         self.result : str = result          
     
 class BasicProtocol():    
-    def __init__(self, query : str):
+    def __init__(self, query : str, command : str = "QUIT"):
         self.query : str = query
+        self.command = command
 
 class Set(BasicProtocol):
     command = 'SET'
