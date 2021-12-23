@@ -1,7 +1,8 @@
 import asyncio, typing
 from .exceptions import CatchException, RedisException
 from .parser import Parser
-from redis_protocol import decode, encode
+from redis_protocol import decode as decoder
+from redis_protocol import encode as encoder
 
 class Result():
     def __init__(self, result : str):
@@ -24,12 +25,14 @@ class Query():
         
     async def _execute_command(self, command: str, query : str):
         parser = Parser()
-        data_ = encode(command+' '+query)
+        data_ = encoder(command+' '+query)
+        data_ = data_.encode()
         self.writer.write(data_)
         await self.writer.drain()
         data = await self.reader.read(100)
         print(data)
-        res = decode(data)
+        res = decoder(data)
+        res = res.decode("utf-8")
         print(res)
         catching = CatchException(text=res)
         catched = await catching.catch_error()
