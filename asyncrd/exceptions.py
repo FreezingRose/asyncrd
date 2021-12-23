@@ -36,10 +36,11 @@ class CatchException():
             raise RedisException(text[1])
             return
         if self.text.startswith("+OK"):
-            if command == "QUIT":
-                return 
+      
             res = RedisOK("OK")
             return res.msg
+        if command == "QUIT":
+            return 
         self.text = self.text.strip("$5")
         self.text = self.text.strip("$6")
         if int(self.text) == -1:
