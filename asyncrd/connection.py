@@ -51,6 +51,12 @@ class ConnectionProtocol():
         except:
             pass
         
+    def create_custom_protocol(self, command: str, query: str):
+        protocol = BasicProtocol(query=query)
+        protocol.command = command
+        
+        return protocol
+        
     async def get(self, query : str):
         await self._do_connect_check()
         
