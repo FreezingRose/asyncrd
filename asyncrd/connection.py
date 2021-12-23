@@ -1,6 +1,7 @@
 import asyncio, socket
 from urllib.parse import urlparse
 from .query import Query, Get, Set
+from .exceptions import RedisException
 
 class ConnectionProtocol():
     def __init__(self, connection_url : str):
@@ -10,6 +11,10 @@ class ConnectionProtocol():
         
     async def connect(self):
         self.reader, self.writer = await asyncio.open_connection(self.hostname, self.port)
+        
+    async def close(self):
+        self.writer.close()
+        await self.writer.wait_closed()
         
     async def get(self, query : str):
         data = Query(self)
