@@ -9,7 +9,8 @@ class Parser():
         res += f"*2{PROTOCOL}$4{PROTOCOL}{command}{PROTOCOL}$6{PROTOCOL}{query}{PROTOCOL}"
         return res.encode()
     
-    async def decode(self, text : str):
+    async def decode(self, text):
+        text = text.decode("utf-8")
         prot = text.find(PROTOCOL)
         if prot == 0:
             protocol_list = ['$', "-", "+"]
