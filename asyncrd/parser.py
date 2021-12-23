@@ -6,7 +6,7 @@ PROTOCOL = "\r\n"
 class Parser():
     async def encode(self, command, query):
         res = ""
-        res += f"$4{PROTOCOL}{command}{PROTOCOL}$6{PROTOCOL}{query}{PROTOCOL}"
+        res += f"{command}{PROTOCOL}{query}{PROTOCOL}"
         return res.encode()
     
     async def decode(self, text):
