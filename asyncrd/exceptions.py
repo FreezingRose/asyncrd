@@ -39,7 +39,6 @@ class CatchException():
                 raise RedisException(res[1])
                 break
                 return
-            else:
-                return res
+        return res
             
         
