@@ -37,7 +37,7 @@ class Query():
         command = getattr(protocol, 'command', None)
         
         if not command:
-            raise Exception('protocol.command is not present')
+            raise RedisException('protocol.command is not present')
             
         return await self._execute_command(command + ' ' + protocol.query)
     
