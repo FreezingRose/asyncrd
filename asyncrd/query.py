@@ -1,5 +1,6 @@
 import asyncio, typing
 from .exceptions import CatchException, RedisException
+from .parser import Parser
 
 class Result():
     def __init__(self, result : str):
@@ -20,9 +21,10 @@ class Query():
         self.reader = connection.reader
         self.writer = connection.writer
         
-    async def _execute_command(self, command: str):
-        data_ = command+"\r\n"
-        self.writer.write(data_.encode())
+    async def _execute_command(self, command: str, query : str):
+        parser = Parser()
+        data_ = await parser.encode(command, query)
+        self.writer.write(data_)
         await self.writer.drain()
         data = await self.reader.read(100)
         res = Result(data.decode('utf-8'))
@@ -38,5 +40,5 @@ class Query():
         
         if not command:
             raise RedisException('protocol.command is not present')
-        return await self._execute_command(command + ' ' + protocol.query)
+        return await self._execute_command(command, protocol.query)
     
