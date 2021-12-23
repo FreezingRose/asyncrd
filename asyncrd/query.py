@@ -32,8 +32,6 @@ class Query():
         print(res)
         catching = CatchException(text=res)
         catched = await catching.catch_error()
-        catched[0] = ""
-        catched[1] = ""
         return catched
         
     async def do_query(self, protocol : typing.Union[Get, Set, BasicProtocol]):
