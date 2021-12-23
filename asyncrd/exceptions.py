@@ -30,6 +30,15 @@ class CatchException():
     async def catch_error(self):
         parser = Parser()
         res = decode(self.text)
-        return res
+        rese = ["-ERR", "-WRONGTYPE"]
+        res = res.decode("utf-8")
+        if res.startswith("$-1"):
+            return "NONE"
+        for i in rese:
+            if res.starswith(i):
+                res = res.split(i)
+                raise RedisException(res[1])
+                break
+                return
             
         
