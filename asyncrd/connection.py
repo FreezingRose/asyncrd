@@ -14,11 +14,9 @@ class ConnectionProtocol():
     async def get(self, query : str):
         data = Query(self)
         result = await data.do_query(Get(query=query))
-        await asyncio.sleep(2)
         return result
 
     async def set(self, query : str):
         data = Query(self)
         result = await data.do_query(Set(query=query))
-        await asyncio.sleep(2)
         return result
