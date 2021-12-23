@@ -10,10 +10,10 @@ class BasicProtocol():
         self.query : str = query
 
 class Set(BasicProtocol):
-    command = 'set'
+    command = 'SET'
             
 class Get(BasicProtocol):
-    command = 'get'
+    command = 'GET'
 
 class Query():
     def __init__(self, connection):
