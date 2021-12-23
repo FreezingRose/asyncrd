@@ -13,9 +13,14 @@ class ConnectionProtocol():
         self.writer = None
         
         self._closed = False
+        self._connected = False
         
     async def connect(self):
+        if self._connected:
+            raise RedisException('Connected to redis database.')
+            
         self.reader, self.writer = await asyncio.open_connection(self.hostname, self.port)
+        self._connected = True
         
     async def close(self):
         if self._closed:
@@ -26,18 +31,36 @@ class ConnectionProtocol():
         self._closed = True
         
     async def __aenter__(self):
-        await self.connect()
+        try:
+            await self.connect()
+        except:
+            pass
+        
         return self
     
     async def __aexit__(self, exc_type, exc_value, traceback):
-        await self.close()
+        try:
+            await self.close()
+        except:
+            pass
+        
+    async def _do_connect_check(self):
+        try:
+            if not self._connected:
+                await self.connect()
+        except:
+            pass
         
     async def get(self, query : str):
+        await self._do_connect_check()
+        
         data = Query(self)
         result = await data.do_query(Get(query=query))
         return result
 
     async def set(self, query : str):
+        await self._do_connect_check()
+        
         data = Query(self)
         result = await data.do_query(Set(query=query))
         return result
