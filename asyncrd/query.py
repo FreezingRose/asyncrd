@@ -25,7 +25,7 @@ class Query():
         
     async def _execute_command(self, command: str, query : str):
         parser = Parser()
-        data_ = encoder(command)
+        data_ = encoder(command+query)
         print(data_)
         data_ = data_.encode()
         self.writer.write(data_)
