@@ -29,6 +29,7 @@ class CatchException():
     async def catch_error(self):
         parser = Parser()
         res = await parser.decode(self.text)
+        res[0] = ""
         return res
             
         
