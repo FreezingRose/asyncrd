@@ -3,8 +3,6 @@ from .exceptions import RedisException, RedisCommandUnknown, RedisWrongType
 
 PROTOCOL = "\r\n"
 
-*2\r\n$4\r\nLLEN\r\n$6\r\nmylist\r\n
-
 class Parser():
     async def encode(self, command, query):
         res = ""
