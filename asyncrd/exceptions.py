@@ -29,7 +29,7 @@ class CatchException():
             return
         if self.text.startswith("+OK"):
             res = RedisOK("OK")
-            return res.mesg
+            return res.msg
         return self.text
             
         
