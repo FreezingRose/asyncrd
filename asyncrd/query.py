@@ -27,7 +27,9 @@ class Query():
         self.writer.write(data_)
         await self.writer.drain()
         data = await self.reader.read(100)
+        print(data)
         res = await parser.decode(data)
+        print(res)
         catching = CatchException(text=res)
         catched = await catching.catch_error()
         catched[0] = ""
