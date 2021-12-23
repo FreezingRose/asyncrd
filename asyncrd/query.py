@@ -19,8 +19,8 @@ class Query():
         self.reader = connection.reader
         self.writer = connection.writer
         
-    async def do_query(self, protocol : typing.Union[Get, Set]):
-        data_ = protocol.query+"\r\n"
+    async def _execute_command(self, command: str):
+        data_ = command+"\r\n"
         self.writer.write(data_.encode())
         await self.writer.drain()
         data = await self.reader.read(100)
@@ -31,4 +31,7 @@ class Query():
         catching = CatchException(text=res)
         await catching.catch_error()
         return res
+        
+    async def do_query(self, protocol : typing.Union[Get, Set]):
+        return self._execute_command(protocol.query)
     
