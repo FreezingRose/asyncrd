@@ -30,7 +30,7 @@ class Parser():
                 res = results[1]
                 text = text.strip(res)
                 raise RedisWrongType(text)
-             if text.startswith(results[2]):
+            if text.startswith(results[2]):
                 res = results[2]
                 text = text.strip(res)
                 return "OK"
