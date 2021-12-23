@@ -3,7 +3,14 @@ from .exceptions import RedisException, RedisCommandUnknown, RedisWrongType
 
 PROTOCOL = "\r\n"
 
+*2\r\n$4\r\nLLEN\r\n$6\r\nmylist\r\n
+
 class Parser():
+    async def encode(self, command, query):
+        res = ""
+        res += f"*2{PROTOCOL}$4{PROTOCOL}{command}{PROTOCOL}$6{PROTOCOL}{query}{PROTOCOL}"
+        return res
+    
     async def decode(self, text : str):
         prot = text.find(PROTOCOL)
         if prot == 0:
