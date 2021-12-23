@@ -29,7 +29,7 @@ class CatchException():
         
     async def catch_error(self):
         parser = Parser()
-        res = decode(self.text)
+        res = self.text
         rese = ["-ERR", "-WRONGTYPE"]
         res = res.decode("utf-8")
         if res.startswith("$-1"):
