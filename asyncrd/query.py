@@ -30,8 +30,8 @@ class Query():
         res = res.replace("\r", "")
         res = res.replace("\n", "")
         catching = CatchException(text=res)
-        await catching.catch_error()
-        return res
+        catched = await catching.catch_error()
+        return cached
         
     async def do_query(self, protocol : typing.Union[Get, Set, BasicProtocol]):
         command = getattr(protocol, 'command', None)
