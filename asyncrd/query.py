@@ -6,7 +6,7 @@ class Result():
         self.result : str = result          
     
 class BasicProtocol():    
-    def __init__(self, query : str, command : str = "QUIT"):
+    def __init__(self, query : str = "", command : str = "QUIT"):
         self.query : str = query
         self.command = command
 
@@ -39,6 +39,7 @@ class Query():
         
         if not command:
             raise RedisException('protocol.command is not present')
-            
+        if command == "QUIT":
+            return await self._execute_command(command)
         return await self._execute_command(command + ' ' + protocol.query)
     
