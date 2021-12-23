@@ -9,7 +9,7 @@ class Parser():
     async def encode(self, command, query):
         res = ""
         res += f"*2{PROTOCOL}$4{PROTOCOL}{command}{PROTOCOL}$6{PROTOCOL}{query}{PROTOCOL}"
-        return res
+        return res.encode()
     
     async def decode(self, text : str):
         prot = text.find(PROTOCOL)
