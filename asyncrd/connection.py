@@ -1,6 +1,6 @@
 import asyncio, socket
 from urllib.parse import urlparse
-from .query import Query, Get, Set
+from .query import Query, Get, Set, BasicProtocol
 from .exceptions import RedisException
 
 class ConnectionProtocol():
