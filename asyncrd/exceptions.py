@@ -30,6 +30,7 @@ class CatchException():
         parser = Parser()
         res = await parser.decode(self.text)
         res[0] = ""
+        res[1] = ""
         return res
             
         
