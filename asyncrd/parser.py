@@ -1,4 +1,4 @@
-import aioconsole
+import aioconsole, io
 
 class BaseRedisException(Exception):
     pass
@@ -19,8 +19,8 @@ PROTOCOL = "\r\n"
 
 class Parser():
     async def encode(self, command, query):
-        res = f"*2{PROTOCOL}$4{PROTOCOL}{command}{PROTOCOL}$6{PROTOCOL}{query}{PROTOCOL}"
-        return res
+        res = io.BytesIO(f"*2{PROTOCOL}$4{PROTOCOL}{command}{PROTOCOL}$6{PROTOCOL}{query}{PROTOCOL}")
+        return res.read()
     
     async def decode(self, text):
         text = text.decode("utf-8")
