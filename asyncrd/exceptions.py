@@ -40,6 +40,11 @@ class CatchException():
             return res.msg
         self.text = self.text.strip("$5")
         self.text = self.text.strip("$6")
+        try:
+            if int(self.text) == -1:
+                self.text = []
+        except:
+            raise RedisException("Invalid Request")
         return self.text
             
         
