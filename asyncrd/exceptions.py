@@ -21,7 +21,7 @@ class CatchException():
     async def catch_error(self):
         if self.text.startswith("-ERR"):
             text = self.text.split("-ERR ")
-            if "unknown command" in text[1]:
+            if "unknown" in text[1]:
                 text_one = text[1]
                 raise RedisCommandUnknown(text_one)
                 return
@@ -29,7 +29,7 @@ class CatchException():
             return
         if self.text.startswith("+OK"):
             res = RedisOK("OK")
-            return res.message
+            return res.mesg
         return self.text
             
         
