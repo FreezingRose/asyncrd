@@ -19,8 +19,8 @@ PROTOCOL = "\r\n"
 
 class Parser():
     async def encode(self, command, query):
-        res = io.BytesIO(f"*2{PROTOCOL}$4{PROTOCOL}{command}{PROTOCOL}$6{PROTOCOL}{query}{PROTOCOL}")
-        return res.read()
+        res = f"*2{PROTOCOL}$4{PROTOCOL}{command}{PROTOCOL}$6{PROTOCOL}{query}{PROTOCOL}".encode()
+        return res
     
     async def decode(self, text):
         text = text.decode("utf-8")
