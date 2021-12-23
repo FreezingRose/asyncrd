@@ -38,6 +38,8 @@ class CatchException():
         if self.text.startswith("+OK"):
             res = RedisOK("OK")
             return res.msg
+        self.text = self.text.strip("$5")
+        self.text = self.text.strip("$6")
         return self.text
             
         
