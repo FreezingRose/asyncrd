@@ -31,7 +31,6 @@ class CatchException():
         parser = Parser()
         res = self.text
         rese = ["-ERR", "-WRONGTYPE"]
-        res = res.decode("utf-8")
         if res.startswith("$-1"):
             return "NONE"
         for i in rese:
