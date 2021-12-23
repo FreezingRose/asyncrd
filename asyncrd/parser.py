@@ -17,8 +17,6 @@ class RedisWrongType(BaseRedisException):
 
 PROTOCOL = "\r\n"
 
-*2\r\n$4\r\nLLEN\r\n$6\r\nmylist\r\n
-
 class Parser():
     async def encode(self, command, query):
         res = f"*2{PROTOCOL}$4{PROTOCOL}{command}$6{PROTOCOL}{query}{PROTOCOL}"
