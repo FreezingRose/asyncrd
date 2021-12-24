@@ -20,7 +20,7 @@ PROTOCOL = "\r\n"
 class Parser():
     @classmethod
     async def encode(cls, command, query):
-        res = f"*2{PROTOCOL}$4{PROTOCOL}{command}{PROTOCOL}$4{PROTOCOL}{query}{PROTOCOL}".encode()
+        res = f"*2{PROTOCOL}$3{PROTOCOL}{command}{PROTOCOL}$3{PROTOCOL}{query}{PROTOCOL}".encode()
         return res
     
     @classmethod
