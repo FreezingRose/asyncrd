@@ -20,4 +20,3 @@ class Connector:
 async def connect(url):
     connection = Connector(url)
     return connection.connection
-     
