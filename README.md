@@ -3,6 +3,7 @@
 </h1>
 
 
+Example:
 ```py
 import asyncrd
 # connect to redis
