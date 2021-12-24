@@ -35,8 +35,6 @@ class Parser():
             found = re.findall(regex, text)
             if found:
                 text = text.strip(found[0])
-            else:
-                raise RedisException("Not Valid")
             return text
         elif prot == -1:
             raise RedisException("{0} was not present in the result.".format(PROTOCOL))
