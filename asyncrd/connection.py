@@ -38,11 +38,10 @@ class ConnectionProtocol():
     async def close(self) ->None:
         if self._closed:
             raise RedisException('Connection is closed.')
-            
+        data = Query(self)
+        await data.do_query(Quit())           
         self.writer.close()
         await self.writer.wait_closed()
-        data = Query(self)
-        await data.do_query(Quit())
         self._closed = True
         
     async def __aenter__(self) -> None:
