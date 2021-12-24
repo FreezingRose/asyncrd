@@ -29,10 +29,6 @@ class CatchException():
         
     async def catch_error(self):
         parser = Parser()
-        res = self.text
-        if "-ERR" in res or "-WRONGTYPE" in res:
-            res = res.split("-ERR")
-            res = res.split("-WRONGTYPE")
-        return res
+        decoded = await parser.decode(self.text)
             
         
