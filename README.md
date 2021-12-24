@@ -1,9 +1,7 @@
 <h1 align="center">
 <sub>
-    <img src="https://media.discordapp.net/attachments/822902690010103818/923533249425313792/unknown.png" height="36">
+    <img src="https://media.discordapp.net/attachments/822902690010103818/923533249425313792/unknown.png" height="36">asyncrd
 </sub>
-&nbsp;
-asyncrd
 A simple asyncio Redis driver for Python.
 
 ```py
