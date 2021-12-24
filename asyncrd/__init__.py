@@ -7,8 +7,9 @@ class connecter():
       
     @classmethod
     async def connect(cls):
-        cls.connection = ConnectionProtocol(connection_url)
-        return cls.connection
+        connection = ConnectionProtocol(connection_url)
+        cls = connection
+        return cls
         
     async def __aenter__(self):
         connection = await self.connect()
@@ -16,6 +17,6 @@ class connecter():
     
     async def __aexit__(self, *args, **kwargs):
         await self.connection.close()
-        return self
+        return None
 
 connect = connecter
