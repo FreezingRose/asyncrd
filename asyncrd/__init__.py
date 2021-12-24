@@ -6,7 +6,7 @@ class Connector:
         self.connection_url = connection_url
         self.connection = ConnectionProtocol(connection_url)
         
-    async def prepare(self):
+    async def prepare():
         connection = await self.connection.connect
         
     async def __aenter__(self):
