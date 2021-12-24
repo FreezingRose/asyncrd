@@ -6,6 +6,9 @@ class Connector:
         self.connection_url = connection_url
         self.connection = ConnectionProtocol(connection_url)
         
+    async def prepare():
+        connection = await self.connection.connect
+        
     async def __aenter__(self):
         await self.connection.connect()
         return self.connection
@@ -16,5 +19,5 @@ class Connector:
 
 async def connect(url):
     connection = Connector(url)
-    return connection
+    return connection.connection
      
