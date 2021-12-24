@@ -20,7 +20,8 @@ PROTOCOL = "\r\n"
 class Parser():
     @classmethod
     async def encode(cls, command, query):
-        res = f"*2{PROTOCOL}$3{PROTOCOL}{command}{PROTOCOL}$5{PROTOCOL}{query}{PROTOCOL}".encode()
+        query_len = len(query)
+        res = f"*2{PROTOCOL}$3{PROTOCOL}{command}{PROTOCOL}${query_len}{PROTOCOL}{query}{PROTOCOL}".encode()
         return res
     
     @classmethod
