@@ -4,13 +4,16 @@
 </sub>
 &nbsp;
 asyncrd
-</h1>
-<p align="center">
-<sup>
-A driver for Redis (`prototype`)
-</sup>
-<br>
-<sup>
-    <!-- <a href="">Ubuntu host guide by Digital Ocean.</a> -->
-</sup>
-</p>
+A simple asyncio Redis driver for Python.
+
+```py
+import asyncrd
+# connect to redis
+db = await asyncrd.connect("redis://localhost:7000")
+# get stuff
+data = await db.get("test")
+# print result
+print(data)
+# close connection
+await db.close()
+```
