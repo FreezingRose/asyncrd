@@ -32,7 +32,6 @@ class Query():
         await self.writer.drain()
         data = await self.reader.read(100)
         res = data
-        res = res.decode("utf-8")
         catching = CatchException(text=res)
         catched = await catching.catch_error()
         return catched
