@@ -27,7 +27,6 @@ class Query():
         parser = Parser()
         data_ = await parser.encode(command, query)
         print(data_)
-        data_ = data_.encode()
         self.writer.write(data_)
         await self.writer.drain()
         data = await self.reader.read(100)
