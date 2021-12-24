@@ -18,19 +18,21 @@ class RedisWrongType(BaseRedisException):
 PROTOCOL = "\r\n"
 
 class Parser():
-    async def encode(self, command, query):
+    @classmethod
+    async def encode(cls, command, query):
         res = f"*2{PROTOCOL}$4{PROTOCOL}{command}{PROTOCOL}{query}{PROTOCOL}".encode()
         if command == "GET":
             res = f"*1{PROTOCOL}$4{PROTOCOL}{command}{PROTOCOL}{query}{PROTOCOL}".encode()
         return res
     
-    async def decode(self, text):
+    @classmethod
+    async def decode(cls, text):
         text = text.decode("utf-8")
         prot = 0
         if prot == 0:
             protocol_list = ['$', "-", "+"]
             if text[0] not in protocol_list:
-                raise RedisException("These ({0}) were not present in the result.".format(", ".join(protocol_list)))
+                raise RedisException("These ({0}) are not present in the result.".format(", ".join(protocol_list)))
                 return
             if "-1" in text:
                 protocol_list = ['$', '+']
