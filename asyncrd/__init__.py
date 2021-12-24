@@ -6,7 +6,7 @@ class connecter():
         self.connection_url = connection_url
       
     @classmethod
-    async def connect(cls)
+    async def connect(cls):
         cls.connection = ConnectionProtocol(connection_url)
         return cls.connection
         
