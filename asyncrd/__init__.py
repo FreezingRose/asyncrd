@@ -18,4 +18,4 @@ class connecter():
         await self.connection.close()
         return self
 
-
+connect = connecter
