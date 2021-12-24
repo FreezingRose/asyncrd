@@ -1,49 +1,20 @@
-from typing import (
-    Union,
-    Optional
-)
+from typing import Union, Optional
 
-CRLF = "\r\n"
+PROTOCOL_REQUIREMENT = "\r\n"
 
-def _encode_simple_string(text: str):
-    return ("+" + text + CRLF)
+def encode_number(number: Union[str, int]):
+    return ":{number}{PROTOCOL_REQUIREMENT}"
 
-def _encode_error(error: str):
-    return ("-" + error + CRLF)
-
-def _encode_integer(integer: Union[str, int]):
-    integer = str(integer)
-    return (":" + integer + CRLF)
-
-def _encode_bulk_string(string: Optional[str]):
+def encode_string(string: Optional[str]):
     if string is None:
-        return "$-1\r\n" # NULL/None as a bulk string.
+        return "$-1{PROTOCOL_REQUIREMENT}"
+    return f"${len(string)}{PROTOCOL_REQUIREMENT}{string}{PROTOCOL_REQUIREMENT}"
 
-    length = len(string)
-    length = str(length)
-
-    return (
-        "$" + length + CRLF + string + CRLF
-    )
-
-def _encode_array(array: list):
-    length = len(array)
-    length = str(length)
-
-    encoded = "*" + length + CRLF
-    for i in array:
-        encoded += i
-
-    if not encoded.endswith(CRLF):
-        encoded += CRLF
-    
+def encode_list(initial_list: list):
+    encoded = f"*{str(len(initial_list))}{PROTOCOL_REQUIREMENT}{''.join(initial_list)}{PROTOCOL_REQUIREMENT}"
     return encoded
 
-def _encode_command_string(command: str, lonely: bool = True):
-    command = command.upper()
-
-    if lonely:
-        return (command + CRLF)
-        
-    length = len(command)
-    return (f"${length}" + CRLF + command + CRLF)
+def format_command_string(command: str, noarg: bool = True):
+    if noarg:
+        return (f"{command}{PROTOCOL_REQUIREMENT}")
+    return f"${len(command)}{PROTOCOL_REQUIREMENT}{command}{PROTOCOL_REQUIREMENT}"
