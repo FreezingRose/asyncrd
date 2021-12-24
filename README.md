@@ -7,7 +7,7 @@ Example:
 ```py
 import asyncrd
 # connect to redis
-db = await asyncrd.connect("redis://localhost:7000")
+db = await asyncrd.connect("redis://localhost")
 # get stuff
 data = await db.get("test")
 # print result
