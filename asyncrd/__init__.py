@@ -1,7 +1,7 @@
 from .connection import *
 from .query import *
 
-class connect():
+class connecter():
     def __init__(self, connection_url : str):
         self.connection_url = connection_url
         self.connection = ConnectionProtocol(connection_url)
@@ -14,4 +14,4 @@ class connect():
         await self.connection.close()
         return self
 
-connect = connect
+connect = connecter()
