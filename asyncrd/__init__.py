@@ -1,8 +1,22 @@
 from .connection import *
 from .query import *
 
-async def connect(connection_url):
-    connection = ConnectionProtocol(connection_url)
-    connection = await connection.connect()
-    cls = connection
-    return cls
+class Connector:
+    def __init__(self, connection_url : str):
+        self.connection_url = connection_url
+        self.connection = ConnectionProtocol(connection_url)
+        
+    async def prepare(self):
+        connection = await self.connection.connect
+        
+    async def __aenter__(self):
+        await self.connection.connect()
+        return self.connection
+    
+    async def __aexit__(self, *args, **kwargs):
+        await self.connection.close()
+        return self
+
+async def connect(url):
+    connection = Connector(url)
+    return connection.connection
