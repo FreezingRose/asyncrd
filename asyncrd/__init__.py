@@ -10,7 +10,7 @@ class connect():
         await self.connection.connect()
         return self.connection
     
-    async def __aexit__(self):
+    async def __aexit__(self, *args, **kwargs):
         await self.connection.close()
         return self
 
