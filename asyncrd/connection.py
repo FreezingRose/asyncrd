@@ -22,6 +22,8 @@ class ConnectionProtocol():
         self.connection_url = urlparse(connection_url)
         self.hostname = self.connection_url.hostname
         self.port = self.connection_url.port
+        if not self.port:
+            self.port = 6379
         
         self.reader = None
         self.writer = None
