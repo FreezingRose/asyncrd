@@ -15,7 +15,7 @@ class Route:
             command = format_command_string(self._protocol.command)
             return command.encode('utf-8')
 
-        command_formatted = format_command_string(self._protocol.command, lonely=False)
+        command_formatted = format_command_string(self._protocol.command, noarg=False)
         to_pass_args = [command_formatted,]
         command = self._format_args(to_pass_args, *args)
         return command.encode("utf-8")
