@@ -117,7 +117,7 @@ class ConnectionProtocol():
         result = await data.do_query(HMGet(base, *queries))
         return result
     
-    async def hmdel(self, base : str, *queries) -> Optional[Union[str, int, list, tuple, dict]]:
+    async def hdel(self, base : str, *queries) -> Optional[Union[str, int, list, tuple, dict]]:
         await self._do_connect_check()
         
         data = Query(self)
