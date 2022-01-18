@@ -3,6 +3,7 @@ from .models import (
     Get,
     HSet,
     HGet,
+    HDEL,
     HMGet,
     HMSet,
     Set, 
@@ -114,4 +115,11 @@ class ConnectionProtocol():
         
         data = Query(self)
         result = await data.do_query(HMGet(base, *queries))
+        return result
+    
+    async def hmdel(self, base : str, *queries) -> Optional[Union[str, int, list, tuple, dict]]:
+        await self._do_connect_check()
+        
+        data = Query(self)
+        result = await data.do_query(HDEL(base, *queries))
         return result
