@@ -3,7 +3,7 @@ from .models import (
     Get,
     HSet,
     HGet,
-    HDEL,
+    HDel,
     HMGet,
     HMSet,
     Set, 
@@ -121,5 +121,5 @@ class ConnectionProtocol():
         await self._do_connect_check()
         
         data = Query(self)
-        result = await data.do_query(HDEL(base, *queries))
+        result = await data.do_query(HDel(base, *queries))
         return result
