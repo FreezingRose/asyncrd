@@ -1,4 +1,4 @@
-from .models import BasicProtocol, Get, Set, HGet, HSet, HMGet, HMSet, Delete
+from .models import BasicProtocol, Get, Set, HGet, HSet, HMGet, HMSet, Delete, HDel
 from typing import Union
 from .exceptions import RedisException
 from .encoders import format_command_string, encode_list, encode_string, encode_number
@@ -46,7 +46,7 @@ class Query():
         data = await self.reader.read(100)
         return decoder(data.decode('utf-8'))
         
-    async def do_query(self, protocol : Union[BasicProtocol, Get, Set, HGet, HSet, HMGet, HMSet, Delete]):
+    async def do_query(self, protocol : Union[BasicProtocol, Get, Set, HGet, HSet, HMGet, HMSet, Delete, HDel]):
         res = await self._execute_command(protocol)
         return res
     
