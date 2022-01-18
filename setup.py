@@ -5,10 +5,10 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="asyncrd",
-    version="2.2.0",
+    version="2.2.1",
     author="Alex Hutz",
     author_email="frostiitheweeb@outlook.com",
-    description="A small project and a wrapper for Redis.",
+    description="A simple wrapper for Redis.",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/OpenRobot-Packages/asyncrd",
