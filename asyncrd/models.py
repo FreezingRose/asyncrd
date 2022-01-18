@@ -22,7 +22,7 @@ class HSet(BasicProtocol):
 class HDel(BasicProtocol):
 	command = 'HDEL'
 	def __init__(self, base : str, key : str, value : str = None):
-		super.__init__(base, key, value)
+		super().__init__(base, key, value)
 
 class HGet(BasicProtocol):
     command = 'HGET'
