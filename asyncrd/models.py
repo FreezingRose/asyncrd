@@ -18,6 +18,11 @@ class HSet(BasicProtocol):
     command = 'HSET'
     def __init__(self, base: str, key: str, value: str):
         super().__init__(base, key, value)
+		
+class HDel(BasicProtocol):
+	command = 'HDEL'
+	def __init__(self, base : str, key : str, value : str = None):
+		super.__init__(base, key, value)
 
 class HGet(BasicProtocol):
     command = 'HGET'
